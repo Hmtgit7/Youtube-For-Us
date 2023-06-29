@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
 import { Stack, Box, Typography } from "@mui/material";
-import Sidebar from './Sidebar'
+import {Sidebar,Videos} from './'
+import { fetchFromAPI } from "../utils/fetchFromAPI";
 
 
 const Feed = () => {
+
+const [selectedCategory, setselectedCategory] = useState('New')
+
+useEffect(()=>{
+  fetchFromAPI(`search?part=snippet&q=${selectedCategory}`);
+},[selectedCategory])
+
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
       <Box
@@ -19,13 +27,14 @@ const Feed = () => {
           variant="body2"
           sx={{ mt: 1.5, color: "#fff" }}
         >
-          Copyright 2023 Spark Developie
+          Copyright 2023 @Spark_Developie
         </Typography>
       </Box>
-      <Box p={2} sx={{overflow:'auto' , height:'90vh' }}>
+      <Box p={2} sx={{overflowY:'auto' , height:'90vh' ,flex:2 }}>
         <Typography variant='h4' fontWeight='bold' mb={2} sx={{color:'white'}}>
-          New <span>Videos</span>
+          New <span style={{color:'#f31503'}}>Videos</span>
         </Typography>
+        <Videos videos={[]}/>
       </Box>
     </Stack>
   );

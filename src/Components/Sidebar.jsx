@@ -2,14 +2,14 @@ import React from "react";
 import { Stack } from "@mui/material";
 import { categories } from "../utils/constants";
 
-const selectedCategory = "New";
+const selectedCategory = 'New';
 
 const Sidebar = () => {
   return (
     <Stack
       direction="row"
       sx={{
-        overflow: "auto",
+        overflowY: "auto",
         height: { sx: "auto", md: "95%" },
         flexDirection: { md: "column" },
       }}
@@ -19,7 +19,7 @@ const Sidebar = () => {
           className="category-btn"
           style={{
             color: "white",
-            backgroud: category.name === selectedCategory && "#FC5103",
+            background: category.name === selectedCategory && "#FC5103",
           }}
           key={category.name}
         >
